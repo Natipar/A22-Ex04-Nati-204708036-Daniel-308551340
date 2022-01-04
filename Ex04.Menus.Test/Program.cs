@@ -6,11 +6,11 @@ namespace Ex04.Menus.Test
     {
         public static void Main()
         {
-            Delegates.MainMenu menuDelegates = CreatorOfDelegatesMenu.CreateMenu();
+            Delegates.MainMenu menuDelegates = DelegatesMenuRunner.CreateMenu();
             menuDelegates.Show();
 
-            Interfaces.MainMenu menuInterface = CreatorOfInterfacesMenu.CreateMenu();
-            menuInterface.Show();
+            //Interfaces.MainMenu menuInterface = CreatorOfInterfacesMenu.CreateMenu();
+            //menuInterface.Show();
         }
 
         public static void PressAnyKeyToContinue()

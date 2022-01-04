@@ -5,64 +5,62 @@ namespace Ex04.Menus.Delegates
 {
     public class MenuItem
     {
-        private const int k_GoBack = 0;
-        private readonly List<MenuItem> r_ItemsList = new List<MenuItem>();
-        private readonly string r_Title;
-        private string m_PrevItem;
+        private const int k_goBackFlag = 0;
+        private readonly string r_Label;
+        private string m_PrevMenu;
+        private readonly List<MenuItem> r_MenuItemsList = new List<MenuItem>();
 
-        public event Action<MenuItem> ItemChosen;
+        public event Action<MenuItem> ItemSelected;
 
         public List<MenuItem> ItemList
         {
-            get
-            {
-                return r_ItemsList;
-            }
+            get{ return r_MenuItemsList; }
+        }
+
+        public string Label
+        {
+            get { return this.r_Label; }
         }
 
         public string PrevItem
         {
-            get
-            {
-                return this.m_PrevItem;
-            }
-
-            set
-            {
-                this.m_PrevItem = value;
-            }
-        }
-
-        public string Title
-        {
-            get
-            {
-                return this.r_Title;
-            }
+            get {return this.m_PrevMenu;}
+            set { this.m_PrevMenu = value; }
         }
 
         public MenuItem(string i_Title)
         {
-            this.r_Title = i_Title;
+            this.r_Label = i_Title;
         }
 
         public void AddItem(MenuItem i_ItemToAdd)
         {
-            r_ItemsList.Add(i_ItemToAdd);
-            i_ItemToAdd.PrevItem = this.Title;
+            r_MenuItemsList.Add(i_ItemToAdd);
+            i_ItemToAdd.PrevItem = this.Label;
         }
 
-        public void ItemChosenFunc()
+        public void ItemSelectedFunction()
         {
-            OnItemChosen();
+            OnItemSelected();
         }
 
-        protected virtual void OnItemChosen()
+        protected virtual void OnItemSelected()
         {
-            if (ItemChosen != null)
+            if (ItemSelected != null)
             {
-                ItemChosen.Invoke(this);
+                ItemSelected.Invoke(this);
             }
+        }
+
+        public void PrintLabel()
+        {
+            Console.WriteLine("** {0} **", Label);
+            Console.Write("---");
+            foreach(char c in Label)
+            {
+                Console.Write("-");
+            }
+            Console.WriteLine("---");
         }
     }
 }

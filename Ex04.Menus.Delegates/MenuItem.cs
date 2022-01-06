@@ -52,15 +52,24 @@ namespace Ex04.Menus.Delegates
             }
         }
 
-        public void PrintLabel()
+        public string getLabelToPrint() //TODO : change to string ToReturn instead of printing to the user
         {
-            Console.WriteLine("** {0} **", Label);
-            Console.Write("---");
-            foreach(char c in Label)
+            //Console.WriteLine("** {0} **", Label);
+            //Console.Write("---");
+            //foreach(char c in Label)
+            //{
+            //    Console.Write("-");
+            //}
+            //Console.WriteLine("---");
+            string titleToReturn = null;
+            titleToReturn = string.Format("** {0} **", Label) + Environment.NewLine;
+            titleToReturn += "---";
+            foreach (char c in Label)
             {
-                Console.Write("-");
+                titleToReturn += "-";
             }
-            Console.WriteLine("---");
+            titleToReturn += "---";
+            return titleToReturn;
         }
     }
 }

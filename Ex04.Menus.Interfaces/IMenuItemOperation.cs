@@ -2,6 +2,6 @@
 {
     public interface IMenuItemOperation
     {
-        void OnItemChosen(MenuItem i_MenuItem);
+        void onItemSelected(MenuItem i_MenuItem);
     }
 }

@@ -9,8 +9,8 @@ namespace Ex04.Menus.Test
             Delegates.MainMenu menuDelegates = DelegatesMenuRunner.CreateMenu();
             menuDelegates.Show();
 
-            //Interfaces.MainMenu menuInterface = CreatorOfInterfacesMenu.CreateMenu();
-            //menuInterface.Show();
+            Interfaces.MainMenu menuInterface = InterfacesMenuRunner.CreateMenu();
+            menuInterface.Show();
         }
 
         public static void PressAnyKeyToContinue()

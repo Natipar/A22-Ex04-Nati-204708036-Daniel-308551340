@@ -4,31 +4,37 @@ using Ex04.Menus.Interfaces;
 
 namespace Ex04.Menus.Test
 {
-    public struct CountSpaces : IMenuItemOperation
+    public struct CountCapitals : IMenuItemOperation
     {
-        private void countSpaces()
+        private void countCapitals()
         {
-            int spacesCount = 0;
-            Console.WriteLine("Please enter a string to count its spaces and press 'enter':");
-            string toCount = Console.ReadLine();
-            if (toCount != null)
+            int capitalsCounter = 0;
+            Console.WriteLine("Please enter a sentence to count its uppercase letters: ");
+            string stringToCount = Console.ReadLine();
+            if (stringToCount != null)
             {
-                spacesCount = toCount.Count(i_Ch => i_Ch == ' ');
+                for (int i = 0; i < stringToCount.Length; i++)
+                {
+                    if (char.IsUpper(stringToCount[i]))
+                    {
+                        capitalsCounter++;
+                    }
+                }
             }
 
-            Console.WriteLine("There are {0} spaces.", spacesCount);
+            Console.WriteLine("There are {0} capital letters in the sentence.", capitalsCounter);
+            Program.PressAnyKeyToContinue();
         }
 
-        public void OnItemChosen(MenuItem i_MenuItem)
+        public void onItemSelected(MenuItem i_MenuItem)
         {
-            countSpaces();
-            Program.PressAnyKeyToContinue();
+            countCapitals();
         }
     }
 
     public struct ShowVersion : IMenuItemOperation
     {
-        void IMenuItemOperation.OnItemChosen(MenuItem i_MenuItem)
+        void IMenuItemOperation.onItemSelected(MenuItem i_MenuItem)
         {
             Console.WriteLine("Version: 22.1.4.8930");
             Program.PressAnyKeyToContinue();
@@ -37,31 +43,23 @@ namespace Ex04.Menus.Test
 
     public struct ShowTime : IMenuItemOperation
     {
-        public void OnItemChosen(MenuItem i_MenuItem)
+        public void onItemSelected(MenuItem i_MenuItem)
         {
-            Console.WriteLine(
-                    "The time is: {0}:{1}:{2}",
-                    DateTime.Now.Hour,
-                    DateTime.Now.Minute,
-                    DateTime.Now.Second);
+            Console.WriteLine("The current time is: {0}", DateTime.Now.ToString("HH:mm"));
             Program.PressAnyKeyToContinue();
         }
     }
 
     public struct ShowDate : IMenuItemOperation
     {
-        public void OnItemChosen(MenuItem i_MenuItem)
+        public void onItemSelected(MenuItem i_MenuItem)
         {
-            Console.WriteLine(
-                "The date is: {0}/{1}/{2}",
-                DateTime.Now.Day,
-                DateTime.Now.Month,
-                DateTime.Now.Year);
+            Console.WriteLine("The current date is: {0}", DateTime.Now.ToString("dd/MM/yyyy"));
             Program.PressAnyKeyToContinue();
         }
-    }
+    }       
 
-    public struct DisplayItem : IMenuItemOperation
+    public struct DisplayItem : IMenuItemOperation // TODO : Adjust to same build as delegates method
     {
         public void DisplayInnerMenu(MenuItem i_MenuItem)
         {
@@ -72,12 +70,13 @@ namespace Ex04.Menus.Test
             do
             {
                 Console.Clear();
-                Console.WriteLine(i_MenuItem.Title);
-                Console.WriteLine(string.Format(@"{0}){1}", itemCounter++, i_MenuItem.PrevItem == null ? "Exit" : "Back"));
+                //Console.WriteLine(i_MenuItem.Title);
+                Console.WriteLine(i_MenuItem.getTitleToPrint());
+                Console.WriteLine(string.Format(@"{0}. {1}", itemCounter++, i_MenuItem.PrevItem == null ? "Exit" : "Back"));
 
                 foreach (MenuItem item in i_MenuItem.ItemList)
                 {
-                    Console.WriteLine(string.Format(@"{0}){1}", itemCounter++, item.Title));
+                    Console.WriteLine(string.Format(@"{0}. {1}", itemCounter++, item.Title));
                 }
 
                 userInput = getChoiceFromUser(goBack, itemCounter - 1);
@@ -92,6 +91,8 @@ namespace Ex04.Menus.Test
             }
             while (userInput != goBack);
 
+            Console.WriteLine("Exiting {0}, bye bye :)", i_MenuItem.Title);
+            System.Threading.Thread.Sleep(1500);
             Console.Clear();
         }
 
@@ -113,7 +114,7 @@ namespace Ex04.Menus.Test
             return inputNumber;
         }
 
-        void IMenuItemOperation.OnItemChosen(MenuItem i_MenuItem)
+        void IMenuItemOperation.onItemSelected(MenuItem i_MenuItem)
         {
             DisplayInnerMenu(i_MenuItem);
         }

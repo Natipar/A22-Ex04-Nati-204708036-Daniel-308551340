@@ -15,8 +15,7 @@ namespace Ex04.Menus.Test
             do
             {
                 Console.Clear();
-                i_MenuItem.PrintLabel();
-
+                Console.WriteLine(i_MenuItem.getLabelToPrint());
                 foreach (MenuItem item in i_MenuItem.ItemList)
                 {
                     Console.WriteLine(string.Format(@"{0}. {1}", ++itemCounter, item.Label));

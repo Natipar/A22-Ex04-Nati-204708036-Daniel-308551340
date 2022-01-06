@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace Ex04.Menus.Interfaces
 {
@@ -35,7 +36,7 @@ namespace Ex04.Menus.Interfaces
 
         public void ItemChosen()
         {
-            m_ItemOperation.OnItemChosen(this);
+            m_ItemOperation.onItemSelected(this);
         }
 
         public void AddItem(MenuItem i_ItemToAdd)
@@ -63,6 +64,19 @@ namespace Ex04.Menus.Interfaces
             {
                 return this.r_Title;
             }
+        }
+        
+        public string getTitleToPrint()
+        {
+            string titleToReturn = null;
+            titleToReturn = string.Format("** {0} **", Title) + Environment.NewLine;
+            titleToReturn += "---";
+            foreach (char c in Title)
+            {
+                titleToReturn+="-";
+            }
+            titleToReturn += "---";
+            return titleToReturn;
         }
     }
 }

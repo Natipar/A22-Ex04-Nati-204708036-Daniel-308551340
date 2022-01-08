@@ -21,8 +21,8 @@ namespace Ex04.Menus.Test
             showVersion.ItemOperation = new ShowVersion();
             showTime.ItemOperation = new ShowTime();
             showDate.ItemOperation = new ShowDate();
-            mainMenu.AddItem(versionAndSpaces);
-            mainMenu.AddItem(dateAndTime);
+            mainMenu.AddMenuItem(versionAndSpaces);
+            mainMenu.AddMenuItem(dateAndTime);
             versionAndSpaces.AddItem(countCapitals);
             versionAndSpaces.AddItem(showVersion);
             dateAndTime.AddItem(showDate);

@@ -14,7 +14,7 @@
             r_MainMenuItem = new MenuItem(i_MenuTitle);
         }
 
-        public void AddItem(MenuItem i_ItemToAdd)
+        public void AddMenuItem(MenuItem i_ItemToAdd)
         {
             r_MainMenuItem.AddItem(i_ItemToAdd);
         }

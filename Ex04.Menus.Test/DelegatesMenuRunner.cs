@@ -15,15 +15,15 @@ namespace Ex04.Menus.Test
             MenuItem countCapitals = new MenuItem("Count Capitals");
             MenuItem showVersion = new MenuItem("Show Version");
 
-            mainMenu.AllMainMenuItems.ItemSelected += DelegatesMethods.MenuItem_ItemSelected_DisplayMenu;
+            mainMenu.MainMenuItems.ItemSelected += DelegatesMethods.MenuItem_ItemSelected_DisplayMenu;
             dateAndTime.ItemSelected += DelegatesMethods.MenuItem_ItemSelected_DisplayMenu;
             versionAndSpaces.ItemSelected += DelegatesMethods.MenuItem_ItemSelected_DisplayMenu;
             showDate.ItemSelected += DelegatesMethods.MenuItem_ItemSelected_ShowDate;
             showTime.ItemSelected += DelegatesMethods.MenuItem_ItemSelected_ShowTime;
             countCapitals.ItemSelected += DelegatesMethods.MenuItem_ItemSelected_CountCapitals;
             showVersion.ItemSelected += DelegatesMethods.MenuItem_ItemSelected_ShowVersion;
-            mainMenu.AddItem(dateAndTime);
-            mainMenu.AddItem(versionAndSpaces);
+            mainMenu.AddMenuItem(dateAndTime);
+            mainMenu.AddMenuItem(versionAndSpaces);
             dateAndTime.AddItem(showDate);
             dateAndTime.AddItem(showTime);
             versionAndSpaces.AddItem(countCapitals);
